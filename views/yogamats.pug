@@ -1,0 +1,26 @@
+extends layout
+
+block content
+ h1(style="color: blue;padding:10px;margin:10px;font-size:25px")= title
+ div.container-fluid 
+   div.row
+     - 
+        let results = [
+          { material: 'lululemon', thickness: '5mm', color: 'yellow' },
+          { material: 'jadeyoga harmony mat', thickness: '5mm', color: 'green' },
+          { material: 'Gaiam Dry-Grip', thickness: '6mm', color: 'pink' },
+        ]
+     each item,index in results
+        div.col-sm-2(onclick=`buy(${index})`)
+          h3 Yoga Mat
+          p Material: #{item.material}
+          p Thickness: #{item.thickness}
+          p Color: #{item.color}
+
+ a(href='/') Index Page
+
+ script.
+  function buy(index) {
+    alert("You purchased item " + index);
+  }
+
