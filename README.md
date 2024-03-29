@@ -1,6 +1,6 @@
-# s24wb45Sushmitha
-link : <https://s24wb45sushmitha.onrender.com>
-
+# s24db45Sushmitha
+link for assignment 10 : <https://s24wb45sushmitha.onrender.com><br>
+link for assignment 11 : <https://s24db45sushmitha.onrender.com>
 ## Classes and Attributes
 
 ### Class: Yoga Mats
