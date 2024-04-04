@@ -30,4 +30,18 @@ exports.yogamat_list = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
+    // VIEWS
+   
+    exports.yogamat_view_all_Page = async function(req, res) {
+    try{
+    theyogamat = await yogamat.find();
+    res.render('yogamat', { title: 'Yogamat Search Results', results: theyogamat });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+ 
+    
     
