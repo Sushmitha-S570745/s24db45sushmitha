@@ -19,3 +19,15 @@ res.send('NOT IMPLEMENTED: yogamat delete DELETE ' + req.params.id);
 exports.yogamat_update_put = function(req, res) {
 res.send('NOT IMPLEMENTED: yogamat update PUT' + req.params.id);
 };
+// List of all Costumes
+exports.yogamat_list = async function(req, res) {
+    try{
+    theyogamat = await yogamat.find();
+    res.send(theyogamat);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+    
