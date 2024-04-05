@@ -75,5 +75,24 @@ exports.yogamat_detail = async function(req, res) {
     }
     };
     
-    
-    
+
+exports.yogamat_update_put = async function(req, res) {
+console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+try {
+let toUpdate = await yogamat.findById( req.params.id)
+// Do updates of properties
+if(req.body.material)
+toUpdate.material = req.body.material;
+if(req.body.thickness) toUpdate.thickness = req.body.thickness;
+if(req.body.color) toUpdate.color = req.body.color;
+let result = await toUpdate.save();
+console.log("Sucess " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+}
+};
+
