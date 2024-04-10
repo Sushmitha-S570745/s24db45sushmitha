@@ -95,4 +95,16 @@ res.send(`{"error": ${err}: Update for id ${req.params.id}
 failed`);
 }
 };
-
+// Handle yogamat delete on DELETE.
+exports.yogamat_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await yogamat.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
