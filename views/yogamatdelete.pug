@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    h1= title
+    if (toShow == null)
+        h2 No instance to delete
+    else
+        - let yogamatid = toShow._id
+        - let material = toShow.material
+        - let thickness = toShow.thickness
+        - let color = toShow.color
+        - let actionid = "/resource/yogamat/" + yogamatid
+        script.
+            let actionid = "#{actionid}";
+        div
+            div.row
+                div(class='yogamatAttr mr-3') yogamat ID is:
+                div #{yogamatid}
+            div.row
+                div(class='yogamatAttr mr-3') yogamat Material is:
+                div #{material}
+            div.row
+                div(class='yogamatAttr mr-3') yogamat thickness is:
+                div #{thickness}
+            div.row
+                div(class='yogamatAttr mr-3') yogamat color is:
+                div #{color}
+        button.btn.btn-success.m-2(onclick="deleteOnid()") Delete
+        button.btn.btn-warning.m-2(onclick="cancel()") Cancel
+
+        script.
+            function cancel() {
+                // Go back to the home page for the yogamat collection
+                window.location.href='/yogamat';
+            }
+            function deleteOnid() {
+                console.log("starting delete");
+                // delete first
+                fetch(actionid, {
+                    method: 'DELETE' // Don't need a body for the delete
+                }).then((resp) => {
+                    return resp.text(); // or resp.text() or whatever the server sends
+                }).then((body) => {
+                    alert("Delete succeeded");
+                    window.location.href='/yogamat';
+                    // TODO handle body
+                }).catch((error) => {
+                    // TODO handle error
+                    alert("Delete failed " + error);
+                });
+            }

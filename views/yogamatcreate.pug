@@ -1,0 +1,35 @@
+extends layout
+
+block content
+
+  h1= title
+
+  form(id='yogamatForm', action="/resource/yogamat", method="POST")
+    div.form-group
+      label.yogamatAttr(for='material') yogamat material
+      input#material(type='text', name='material')
+    div.form-group
+      label.yogamatAttr(for='thickness') yogamat thickness
+      input#thickness(type='text', name='thickness')
+    div.form-group
+      label.yogamatAttr(for='color') yogamat color
+      input#color(type='text', name='color')
+    input(type="submit")
+
+  script.
+    document.forms['yogamatForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user tyogamat form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or wyogamatever the server sends
+      }).then((body) => {
+        alert("Save succeeded");
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error );
+      });
+    });

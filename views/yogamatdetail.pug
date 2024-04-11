@@ -1,0 +1,24 @@
+extends layout
+block content
+  h1= title
+ 
+  if toShow == null
+    h2 No instance to show
+  else
+    - let yogamatid = toShow._id
+    - let material = toShow.material
+    - let thickness = toShow.thickness
+    - let color = toShow.color
+    div
+      div.row
+        div.yogamatAttr.mr-3 yogamat ID is:
+        div #{yogamatid}
+      div.row
+        div.yogamatAttr.mr-3 yogamat Material is:
+        div #{material}
+      div.row
+        div.yogamatAttr.mr-3 yogamat thickness is:
+        div #{thickness}
+      div.row
+        div.yogamatAttr.mr-3 yogamat color is:
+        div #{color}
