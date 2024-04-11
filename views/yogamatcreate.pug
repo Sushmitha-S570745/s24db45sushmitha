@@ -1,21 +1,31 @@
 extends layout
-
+ 
 block content
-
+  style.
+    body {
+      background-color: aqua ;
+    }
+    .form-group {
+      border: 2px solid black;
+      border-radius:10px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+ 
   h1= title
-
+ 
   form(id='yogamatForm', action="/resource/yogamat", method="POST")
     div.form-group
-      label.yogamatAttr(for='material') yogamat material
+      label.yogamatAttr(for='material') material
       input#material(type='text', name='material')
     div.form-group
-      label.yogamatAttr(for='thickness') yogamat thickness
+      label.yogamatAttr(for='thickness') yogamat Thickness
       input#thickness(type='text', name='thickness')
     div.form-group
       label.yogamatAttr(for='color') yogamat color
       input#color(type='text', name='color')
-    input(type="submit")
-
+    input(type="submit" class="btn btn-success")
+ 
   script.
     document.forms['yogamatForm'].addEventListener('submit', (event) => {
       event.preventDefault();
