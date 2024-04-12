@@ -17,7 +17,7 @@ console.log("Connection to DB succeeded")});
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var yogamatsRouter = require('./routes/yogamats');
+var yogamatRouter = require('./routes/yogamat');
 var gridRouter = require('./routes/grid');
 var pickRouter = require('./routes/pick');
 var yogamatModel=require('./model/yogamat');
@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/yogamats', yogamatsRouter);
+app.use('/yogamat', yogamatRouter);
 app.use('/grid', gridRouter);
 app.use('/pick', pickRouter);
 app.use('/yogamat',yogamatModel);
