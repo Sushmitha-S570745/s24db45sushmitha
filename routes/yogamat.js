@@ -19,7 +19,7 @@ const secured = (req, res, next) => {
   }
   res.redirect("/login");}
 /* GET detail yogamat page */
-router.get('/detail', yogamat_controllers.yogamat_view_one_Page);
+router.get('/detail', secured,yogamat_controllers.yogamat_view_one_Page);
 /* GET create yogamat page */
 router.get('/create', yogamat_controllers.yogamat_create_Page);
 /* GET create update page */
@@ -28,7 +28,7 @@ router.get('/update', secured,yogamat_controllers.yogamat_update_Page);
 // redirect to login.
 
 /* GET delete yogamat page */
-router.get('/delete', yogamat_controllers.yogamat_delete_Page);
+router.get('/delete', secured,yogamat_controllers.yogamat_delete_Page);
 router.post('/login', passport.authenticate('local'), function(req, res) {
   res.redirect('/');
   });

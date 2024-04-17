@@ -7,7 +7,13 @@ const yogamatSchema = new mongoose.Schema({
         minlength: 0,
         maxlength: 10
     },
-    thickness: String
+    thickness: 
+        {
+            type:String,
+            minlength:[0],
+            maxlength:[20]
+          },
+    
 });
 
 module.exports = mongoose.model("yogamat", yogamatSchema);
