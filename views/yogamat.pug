@@ -21,17 +21,52 @@
 //-     function buy(index) {
 //-       alert("You purchased item " + index);
 //-     }
-extends layout
+
+//- extends layout
  
+//- block content
+//-   h1= title
+//-   - let items = results;
+//-   div(class="container-fluid")
+//-   div(class="row m-1")
+//-     each item in items
+//-       - let destination = `dispatch(\"/yogamat/update?id=${item._id}\")`
+//-       div(class="row-sm-2", class="m-1") Item: #{item.material}(#{item.thickness}) is #{item.color}
+//-       button.btn( class="btn-primary ml-1", onclick= destination) Update
+//-   script.
+//-     function dispatch(path){
+//-       window.location.href=path}
+
+extends layout
+
 block content
   h1= title
+
+  a.btn.btn-primary(href="/yogamat/create") Create Yogamat
+
   - let items = results;
-  div(class="container-fluid")
-  div(class="row m-1")
-    each item in items
-      - let destination = `dispatch(\"/yogamat/update?id=${item._id}\")`
-      div(class="row-sm-2", class="m-1") Item: #{item.material}(#{item.thickness}) is #{item.color}
-      button.btn( class="btn-primary ml-1", onclick= destination) Update
+  each item in items
+    - let updateyogamat = `dispatch("/yogamat/update?id=${item._id}")`
+    - let yogamatDetails = `dispatch("/yogamat/detail?id=${item._id}")`
+    - let yogamatDeletion = `dispatch("/yogamat/delete?id=${item._id}")`
+
+    div
+      p yogamat material - #{item.material}
+      p yogamat thickness - #{item.thickness}
+      p color - #{item.color}
+      button.btn.btn-success.ml-1(onclick=updateyogamat) Update
+      button.btn.btn-secondary.ml-1(onclick=yogamatDetails) Detail
+      button.btn.btn-danger.ml-1(onclick=yogamatDeletion) Delete
+      br
+      br
+
+  style.
+    .btn {
+      margin-right: 5px; 
+      margin-bottom: 15px;
+    }
+
   script.
     function dispatch(path){
-      window.location.href=path}
+      window.location.href = path;
+    }

@@ -13,7 +13,11 @@ var router = express.Router();
 /* GET yogamats */
 router.get('/', yogamat_controllers.yogamat_view_all_Page );
 router.get('/yogamat/:id', yogamat_controllers.yogamat_detail);
-
+const secured = (req, res, next) => {
+  if (req.user){
+  return next();
+  }
+  res.redirect("/login");}
 /* GET detail yogamat page */
 router.get('/detail', yogamat_controllers.yogamat_view_one_Page);
 /* GET create yogamat page */
@@ -22,13 +26,10 @@ router.get('/create', yogamat_controllers.yogamat_create_Page);
 router.get('/update', secured,yogamat_controllers.yogamat_update_Page);
 // A little function to check if we have an authorized user and continue on or
 // redirect to login.
-const secured = (req, res, next) => {
-if (req.user){
-return next();
-}
-res.redirect("/login");}
 
 /* GET delete yogamat page */
 router.get('/delete', yogamat_controllers.yogamat_delete_Page);
-
+router.post('/login', passport.authenticate('local'), function(req, res) {
+  res.redirect('/');
+  });
 module.exports = router;
