@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var passport=require('passport');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('yogamat', { title: 'Search Results for Class yogamat' });
@@ -19,7 +19,15 @@ router.get('/detail', yogamat_controllers.yogamat_view_one_Page);
 /* GET create yogamat page */
 router.get('/create', yogamat_controllers.yogamat_create_Page);
 /* GET create update page */
-router.get('/update', yogamat_controllers.yogamat_update_Page);
+router.get('/update', secured,yogamat_controllers.yogamat_update_Page);
+// A little function to check if we have an authorized user and continue on or
+// redirect to login.
+const secured = (req, res, next) => {
+if (req.user){
+return next();
+}
+res.redirect("/login");}
+
 /* GET delete yogamat page */
 router.get('/delete', yogamat_controllers.yogamat_delete_Page);
 
